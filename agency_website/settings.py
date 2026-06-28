@@ -1,6 +1,21 @@
 import os
 from pathlib import Path
+# 1. ቋንቋዎችን ማግበር
+USE_I18N = True
+USE_L10N = True
 
+# 2. የምንፈልጋቸውን ቋንቋዎች መግለጽ
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+    ('am', _('Amharic')),
+    ('en', _('English')),
+]
+
+# 3. የቋንቋ ምርጫ የሚቀመጥበት ቦታ
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,7 +58,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates'], # ይህ መንገድ ከ BASE_DIR ጋር በትክክል መገናኘቱን አረጋግጥ
-        'APP_DIRS': True,
+        'APP_DIRS': True,ስስስ
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
