@@ -42,8 +42,8 @@ ROOT_URLCONF = 'agency_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 📄 ይህችን መስመር በDIRS ውስጥ በትክክል ጨምራት
-        'DIRS': [os.path.join(BASE_DIR, 'GYAgency', 'templates')], 
+        # 📂 ማሳሰቢያ፦ የዋናው ፕሮጀክትህ ስም GYAgency መሆኑን አረጋግጥ
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,7 +55,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'agency_website.wsgi.application'
 
 # Database
