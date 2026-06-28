@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-your-custom-secret-key-goes-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gyagency.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['gyagency.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 # Application definition
 
