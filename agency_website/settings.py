@@ -42,8 +42,7 @@ ROOT_URLCONF = 'agency_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 📂 ማሳሰቢያ፦ የዋናው ፕሮጀክትህ ስም GYAgency መሆኑን አረጋግጥ
-        'DIRS': [os.path.join(BASE_DIR, 'templates')], 
+        'DIRS': [BASE_DIR / 'templates'], # ይህ መንገድ ከ BASE_DIR ጋር በትክክል መገናኘቱን አረጋግጥ
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

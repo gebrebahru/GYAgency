@@ -3,51 +3,58 @@
 <html lang="am">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GYAgency Admin Page</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .login-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); text-align: center; max-width: 400px; w-index: 100%; border-top: 5px solid #1a2a3a; }
-        .logo-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid #f1c40f; background-color: white; margin-bottom: 15px; }
-        h2 { margin: 10px 0 20px 0; font-size: 1.6rem; color: #1a2a3a; }
-        .input-group { margin-bottom: 15px; text-align: left; }
-        .input-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #2c3e50; }
-        .input-group input { width: 100%; padding: 10px; border: 2px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
-        .input-group input:focus { border-color: #1a2a3a; outline: none; }
-        .login-btn { width: 100%; padding: 12px; background: #e74c3c; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
-        .login-btn:hover { background: #c0392b; }
-        .back-link { display: inline-block; margin-top: 15px; color: #2980b9; text-decoration: none; font-weight: bold; }
-        .error-msg { color: #e74c3c; font-weight: bold; margin-bottom: 15px; }
+        /* ይህ ክፍል ነው ዲዛይኑን ወደ መሃል የሚያመጣው */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #129e31;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 70;
+        }
+        .login-box {
+            background: rgb(255, 255, 255);
+            padding: 90px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(36, 15, 15, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        h2 { color: #333; }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <img src="{% static 'images/logo.png' %}" alt="ኤጀንሲ ሎጎ" class="logo-img">
-        
-        <h2>🔒 GYAgency Admin Page</h2>
-
-        {% if error %}
-            <div class="error-msg">❌ {{ error }}</div>
-        {% endif %}
-
-        <form method="POST" action="">
-            {% csrf_token %}
-            <div class="input-group">
-                <label>የተጠቃሚ ስም (Username)፦</label>
-                <input type="text" name="username" placeholder="ስምዎን ያስገቡ" required>
-            </div>
-
-            <div class="input-group">
-                <label>የምስጢር ቃል (Password)፦</label>
-                <input type="password" name="password" placeholder="የምስጢር ቃል ያስገቡ" required>
-            </div>
-
-            <button type="submit" class="login-btn">ግባ</button>
-        </form>
-
-        <a href="/" class="back-link"> ወደ ዌብሳይቱ ተመለስ</a>
-    </div>
+<div class="login-box">
+    <h2>GYAgency Admin Page</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Log in</button>
+    </form>
+</div>
 
 </body>
 </html>

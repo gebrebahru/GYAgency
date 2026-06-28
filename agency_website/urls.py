@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from core import views
 
 urlpatterns = [
+    admin.site.login_template = 'admin/login.html'
     path('admin/', admin.site.urls),
     path('', views.home_page, name='home'),
     
