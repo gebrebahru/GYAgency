@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <title>ገብረእየሱስ እና ዮሐንስ ዮሴፍ ሁለገብ ኤጀንሲ</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 20px; background-color: #f0f2f5; }
+        .hero-section { background: linear-gradient(135deg, #1a2a3a, #2c3e50); color: white; padding: 35px 20px; border-radius: 12px; text-align: center; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        .logo-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #f1c40f; background-color: white; margin-bottom: 10px; }
+        .hero-section h1 { margin: 10px 0 0 0; font-size: 2.4rem; color: #ffffff; }
+        .hero-subtitle { font-size: 1.3rem; color: #f1c40f; margin: 12px 0 8px 0; font-weight: bold; }
+        .hero-broker { font-size: 1.3rem; background: #e74c3c; display: inline-block; padding: 6px 20px; border-radius: 25px; margin-top: 5px; font-weight: bold; }
+        
+        /* አዲሱ የተቆልቋይ (Dropdown) ማእከል ስታይል */
+        .registration-center { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px; text-align: center; }
+        .dropdown-label { font-size: 1.2rem; font-weight: bold; margin-right: 15px; color: #2c3e50; }
+        .styled-select { padding: 12px 20px; font-size: 1.1rem; font-weight: bold; border: 2px solid #2c3e50; border-radius: 6px; background-color: #f8f9fa; color: #2c3e50; cursor: pointer; outline: none; min-width: 280px; }
+        .styled-select:focus { border-color: #27ae60; }
+        
+        /* ፎርሞችን መጀመሪያ ላይ ለመደበቅ */
+        .form-section { display: none; background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-top: 20px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; border-top: 5px solid #27ae60; }
+        
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .section { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card { background: #f8f9fa; padding: 15px; margin-bottom: 15px; border-radius: 5px; border-left: 5px solid #2980b9; display: flex; flex-direction: column; justify-content: space-between; }
+        .asset-img { width: 100%; max-height: 180px; object-fit: cover; border-radius: 4px; margin: 8px 0; }
+        .info-p { margin: 4px 0; font-size: 14px; }
+        .date-badge { color: #7f8c8d; font-size: 12px; display: block; margin-top: 2px; }
+        
+        .desc-text { display: none; margin-top: 8px; font-size: 14px; color: #555; background: #fff; padding: 5px; border-radius: 4px; border: 1px dashed #ccc; }
+        .see-more-btn { color: #2980b9; background: none; border: none; padding: 0; font-weight: bold; cursor: pointer; font-size: 13px; text-align: left; margin-top: 5px; }
+        
+        .search-form { background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 10px; }
+        .search-form input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .search-form button { padding: 10px 20px; background: #2c3e50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        
+        form { background: #fdfefe; padding: 10px; border: 1px solid #ddd; border-radius: 5px; display: flex; flex-direction: column; gap: 8px; }
+        form button { padding: 8px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .call-btn { display: block; text-align: center; background: #27ae60; color: white; text-decoration: none; padding: 8px; border-radius: 4px; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        <div class="logo-container">
+            <img src="https://i.ibb.co/Z6PZ9Xb/a.jpg" alt="ኤጀንሲ ሎጎ" class="logo-img">
+        </div>
+        <h1>ገብረእየሱስ እና ዮሐንስ ዮሴፍ ሁለገብ ኤጀንሲ</h1>
+        <div class="hero-subtitle">አሰሪና ሰራተኛ፣ ገዢና ሻጭ አገናኝ ታማኝ ኤጀንሲ</div>
+        <div class="hero-broker">📞 ዋና ደላላ፦ 0911223344</div>
+    </div>
+
+    <form method="GET" class="search-form">
+        <input type="text" name="search" value="{{ search_query }}" placeholder="በቦታ ወይም በሙያ ይፈልጉ...">
+        <button type="submit">ፈልግ</button>
+    </form>
+
+    <div class="registration-center">
+        <span class="dropdown-label">የሚፈልጉትን አገልግሎት መርጠው ይመዝገቡ፦</span>
+        <select id="registrationDropdown" class="styled-select" onchange="showSelectedForm()">
+            <option value="">-- ይመዝገቡ --</option>
+            <option value="assetFormSection">1. አዲስ ንብረት ይመዝግቡ (ቤት ወይም መኪና)</option>
+            <option value="workerFormSection">2. አዲስ ስራ ፈላጊ ይመዝግቡ</option>
+            <option value="employerFormSection">3. የሰራተኛ ፈላጊ (ቀጣሪ) መስፈርት መመዝገቢያ</option>
+        </select>
+
+        <div id="assetFormSection" class="form-section" style="border-top-color: #27ae60;">
+            <h3>🏠 አዲስ ንብረት ይመዝግቡ (ቤት፣መኪና እና ቦ)</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ asset_form.as_p }}
+                <button type="submit" name="submit_asset">ንብረት መዝግብ</button>
+            </form>
+        </div>
+
+        <div id="workerFormSection" class="form-section" style="border-top-color: #e67e22;">
+            <h3>👤 አዲስ ስራ ፈላጊ ይመዝግቡ</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ worker_form.as_p }}
+                <button type="submit" name="submit_worker" style="background: #e67e22;">ሰራተኛ መዝግብ</button>
+            </form>
+        </div>
+
+        <div id="employerFormSection" class="form-section" style="border-top-color: #9b59b6;">
+            <h3>🏢 የሰራተኛ ፈላጊ (ቀጣሪ) መስፈርት መመዝገቢያ</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ employer_form.as_p }}
+                <button type="submit" name="submit_employer" style="background: #9b59b6;">መስፈርት መዝግብ</button>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>የአገልግሎቶች ማሳያ ሰሌዳ</h2>
+    <div class="grid-container">
+        
+        <div class="section">
+            <h3>🏠 የቤት/መሬት ሽያጭ</h3>
+            {% for x in house_sales %}
+                <div class="card" style="border-left-color: #27ae60;">
+                    <div>
+                        <h4>{{ x.title }}</h4>
+                        <p class="info-p"><b>ቦታ፦</b> {{ x.location }}</p>
+                        <p class="info-p"><b>ዋጋ፦</b> {{ x.price }} ብር</p>
+                        <span class="date-badge">📅 የተለጠፈበት፦ {{ x.created_at|date:"M d, Y" }}</span>
+                        {% if x.image %} <img src="{{ x.image.url }}" class="asset-img"> {% endif %}
+                        {% if x.description %}
+                            <button class="see-more-btn" onclick="toggleDesc(this)">See more...</button>
+                            <div class="desc-text"><b>ማብራሪያ፦</b> {{ x.description }}</div>
+                        {% endif %}
+                    </div>
+                    <a href="tel:0911223344" class="call-btn">📞 ይደውሉ</a>
+                </div>
+            {% empty %}<p>የለም</p>{% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>🔑 የቤት ኪራይ</h3>
+            {% for x in house_rents %}
+                <div class="card" style="border-left-color: #2980b9;">
+                    <div>
+                        <h4>{{ x.title }}</h4>
+                        <p class="info-p"><b>ቦታ፦</b> {{ x.location }}</p>
+                        <p class="info-p"><b>ዋጋ፦</b> {{ x.price }} ብር</p>
+                        <span class="date-badge">📅 የተለጠፈበት፦ {{ x.created_at|date:"M d, Y" }}</span>
+                        {% if x.image %} <img src="{{ x.image.url }}" class="asset-img"> {% endif %}
+                        {% if x.description %}
+                            <button class="see-more-btn" onclick="toggleDesc(this)">See more...</button>
+                            <div class="desc-text"><b>ማብራሪያ፦</b> {{ x.description }}</div>
+                        {% endif %}
+                    </div>
+                    <a href="tel:0911223344" class="call-btn">📞 ይደውሉ</a>
+                </div>
+            {% empty %}<p>የለም</p>{% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>🚗 የመኪና ሽያጭ</h3>
+            {% for x in car_sales %}
+                <div class="card" style="border-left-color: #f1c40f;">
+                    <div>
+                        <h4>{{ x.title }}</h4>
+                        <p class="info-p"><b>ቦታ፦</b> {{ x.location }}</p>
+                        <p class="info-p"><b>ዋጋ፦</b> {{ x.price }} ብር</p>
+                        <span class="date-badge">📅 የተለጠፈበት፦ {{ x.created_at|date:"M d, Y" }}</span>
+                        {% if x.image %} <img src="{{ x.image.url }}" class="asset-img"> {% endif %}
+                        {% if x.description %}
+                            <button class="see-more-btn" onclick="toggleDesc(this)">See more...</button>
+                            <div class="desc-text"><b>ማብራሪያ፦</b> {{ x.description }}</div>
+                        {% endif %}
+                    </div>
+                    <a href="tel:0911223344" class="call-btn">📞 ይደውሉ</a>
+                </div>
+            {% empty %}<p>የለም</p>{% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>👥 ስራ ፈላጊ ሰራተኞች</h3>
+            {% for x in local_workers %}
+                <div class="card" style="border-left-color: #8e44ad;">
+                    <div>
+                        <h4>[የሀገር ውስጥ] {{ x.name }}</h4>
+                        <p class="info-p"><b>ሙያ፦</b> {{ x.get_skill_display }} | <b>እድሜ፦</b> {{ x.age }}</p>
+                        <p class="info-p"><b>ደመወዝ፦</b> {{ x.price_or_salary }} ብር</p>
+                        <span class="date-badge">📅 የተለጠፈበት፦ {{ x.created_at|date:"M d, Y" }}</span>
+                    </div>
+                    <a href="tel:0911223344" class="call-btn">📞 ይደውሉ</a>
+                </div>
+            {% endfor %}
+            {% for x in foreign_workers %}
+                <div class="card" style="border-left-color: #d35400;">
+                    <div>
+                        <h4>[የውጭ ሀገር] {{ x.name }}</h4>
+                        <p class="info-p"><b>ሙያ፦</b> {{ x.get_skill_display }} | <b>ፓስፖርት፦</b> {{ x.passport_or_id }}</p>
+                        <p class="info-p"><b>የኤጀንሲ ዋጋ፦</b> {{ x.price_or_salary }} ብር</p>
+                        <span class="date-badge">📅 የተለጠፈበት፦ {{ x.created_at|date:"M d, Y" }}</span>
+                    </div>
+                    <a href="tel:0911223344" class="call-btn">📞 ይደውሉ</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>🏢 ሰራተኛ የሚፈልጉ አሰሪዎች (ቀጣሪዎች)</h3>
+            {% for x in employer_requirements %}
+                <div class="card" style="border-left-color: #9b59b6;">
+                    <div>
+                        <h4>{{ x.employer_name }} ({{ x.get_job_type_display }})</h4>
+                        <p class="info-p"><b>የሚፈልጉት ሙያ፦</b> {{ x.get_required_skill_display }}</p>
+                        <p class="info-p"><b>የፆታ ምርጫ፦</b> {{ x.get_gender_preference_display }}</p>
+                        <p class="info-p"><b>የሚከፍሉት ደመወዝ፦</b> {{ x.offered_salary }} ብር</p>
+                        <p class="info-p"><b>አድራሻ፦</b> {{ x.location }}</p>
+                        <span class="date-badge">📅 የተመዘገበበት፦ {{ x.created_at|date:"M d, Y" }}</span>
+                        {% if x.other_requirements %}
+                            <button class="see-more-btn" onclick="toggleDesc(this)">See more...</button>
+                            <div class="desc-text"><b>ተጨማሪ መስፈርት፦</b> {{ x.other_requirements }}</div>
+                        {% endif %}
+                    </div>
+                    <a href="tel:0911223344" class="call-btn" style="background: #9b59b6;">📞 ለአሰሪው አገናኝ</a>
+                </div>
+            {% empty %}<p>የለም</p>{% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function showSelectedForm() {
+            // መጀመሪያ ሁሉንም ፎርሞች ደብቅ
+            var sections = document.getElementsByClassName('form-section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+            }
+            
+            // የተመረጠውን ፎርም ብቻ አውጣ
+            var dropdown = document.getElementById('registrationDropdown');
+            var selectedValue = dropdown.value;
+            if (selectedValue) {
+                document.getElementById(selectedValue).style.display = 'block';
+            }
+        }
+
+        function toggleDesc(btn) {
+            var desc = btn.nextElementSibling;
+            if (desc.style.display === "block") {
+                desc.style.display = "none";
+                btn.innerText = "See more...";
+            } else {
+                desc.style.display = "block";
+                btn.innerText = "See less";
+            }
+        }
+    </script>
+</body>
+</html>
