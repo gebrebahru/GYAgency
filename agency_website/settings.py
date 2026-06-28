@@ -39,11 +39,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'agency_website.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 📄 ይህችን መስመር በDIRS ውስጥ በትክክል ጨምራት
+        'DIRS': [os.path.join(BASE_DIR, 'GYAgency', 'templates')], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
